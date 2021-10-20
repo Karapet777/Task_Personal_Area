@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { AppContext } from "../../context/AppContext";
 
 const Profile = () => {
-    return (
+  const context = useContext(AppContext);
+  console.log({ context });
+  return (
+    <>
+      {context.state.user ? (
         <div>
-            Profile
+          <h1>{context.state.user.name}</h1>
         </div>
-    )
-}
+      ) : (
+        <p>no user</p>
+      )}
+    </>
+  );
+};
 
-export default Profile
+export default Profile;

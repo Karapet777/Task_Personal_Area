@@ -8,14 +8,16 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <h2>Login</h2>
-      <input
-        type="text"
-        onChange={handleValue}
-        value={user.name}
-        placeholder="Email"
-      />
-      <button onClick={login}>Login</button>
+      <div className="login-container_block">
+        <h2>Login</h2>
+        <input
+          type="text"
+          onChange={handleValue}
+          value={user.name}
+          placeholder="Email"
+        />
+        <button onClick={login}>Login</button>
+      </div>
     </div>
   );
 };

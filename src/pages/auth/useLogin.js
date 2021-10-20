@@ -1,10 +1,12 @@
-import { useState } from "react";
-import {useHistory} from 'react-router-dom'
+import { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import { AppContext } from "../../context/AppContext";
 import axios from "axios";
-
+import { actionTypes } from "../../context/actionTypes";
 
 export const useLogin = () => {
-    const history = useHistory()
+  const context = useContext(AppContext);
+  const history = useHistory();
   const [user, setUser] = useState({
     name: "",
   });
@@ -15,18 +17,22 @@ export const useLogin = () => {
     });
   };
 
-  const login = () => {
-    axios
-      .post("http://localhost:3000/profile", {
+  const login = async () => {
+    try {
+      axios.post("http://localhost:3000/profile", {
         user,
-      })
-      .then((res) => console.log(res));
-    setUser({
-      name: "",
-    });
-    setTimeout(() => {
-        history.push('/profile')
-    }, 1000);
+      });
+      context.dispatch({ type: actionTypes.SET_USER, payload: { user } });
+      localStorage.setItem("user", JSON.stringify(user));
+      setUser({
+        name: "",
+      });
+      setTimeout(() => {
+        history.push("/profile");
+      }, 1000);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return { handleValue, login, user };

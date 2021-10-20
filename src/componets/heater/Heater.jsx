@@ -6,8 +6,8 @@ import './Header.scss'
 const Header = () => {
   const headerLinks = [
     { to: "/", title: "Auth" },
-    { to: "posts", title: "Posts" },
-    { to: "profile", title: "Profile" },
+    { to: "/posts", title: "Posts" },
+    { to: "/profile", title: "Profile" },
   ];
   return (
     <div className="app-header-container">
