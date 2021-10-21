@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../../context/AppContext";
 import Link from "../link/Link";
 
 import './Header.scss'
 
 const Header = () => {
+  const context = useContext(AppContext)
+  const user = context.state.user
+
   const headerLinks = [
-    { to: "/", title: "Auth" },
+    { to: "/", title: 'Logout' },
     { to: "/posts", title: "Posts" },
     { to: "/profile", title: "Profile" },
   ];

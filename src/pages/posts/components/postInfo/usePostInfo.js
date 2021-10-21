@@ -12,7 +12,7 @@ export const usePostInfo = () => {
     try {
       const response = await axios.get(`${baseURL}/posts/${id}`);
       setTimeout(() => {
-          seteditText(response.data);
+        seteditText(response.data);
       }, 1000);
     } catch (err) {
       console.log(err);
@@ -21,10 +21,9 @@ export const usePostInfo = () => {
 
   const SaveChenge = async () => {
     try {
-      const response = await axios.put(`${baseURL}/posts/${id}`, {
+      await axios.put(`${baseURL}/posts/${id}`, {
         ...editText,
       });
-      console.log(response);
       history.push("/posts");
     } catch (err) {
       console.log(err);
@@ -32,8 +31,8 @@ export const usePostInfo = () => {
   };
 
   const chengeValue = (value) => {
-    seteditText({ ...editText, title: value })
-  }
+    seteditText({ ...editText, title: value });
+  };
 
-  return {getPosts, SaveChenge, chengeValue, editText};
+  return { getPosts, SaveChenge, chengeValue, editText };
 };

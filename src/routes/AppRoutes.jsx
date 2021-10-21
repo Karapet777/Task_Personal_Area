@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Header from "../componets/heater/Heater";
+import Header from "../componets/header/Header";
 import Layout from "../componets/layout/Layout";
 import Login from "../pages/auth/Login";
 import Posts from "../pages/posts/Posts";

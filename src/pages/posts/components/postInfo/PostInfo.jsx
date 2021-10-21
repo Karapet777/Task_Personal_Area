@@ -8,16 +8,17 @@ const PostInfo = () => {
 
   useEffect(() => {
     getPosts();
+    // eslint-disable-next-line
   }, []);
 
   return (
     <div className="postInfo-container">
       <div className="postInfo-container_block">
-          <h2>Chenge post</h2>
+        <h2>Chenge post</h2>
         <input
           onChange={(evt) => chengeValue(evt.target.value)}
           type="text"
-          value={editText ? editText.title : 'loading...'}
+          value={editText ? editText.title : "loading..."}
         />
         <button onClick={SaveChenge}>Save</button>
       </div>

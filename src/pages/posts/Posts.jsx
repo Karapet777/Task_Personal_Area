@@ -1,22 +1,22 @@
-import React, { useEffect } from "react";
+import React, {  useEffect } from "react";
 import CardPost from "./components/cardPost/CardPost";
 import { usePosts } from "./usePosts";
 import "./Posts.scss";
 
 const Posts = () => {
+ 
   const {
     posts,
-    newPost,
-    handelValue,
+    handelrValue,
+    text,
     createNewPost,
+    handlerSearchPost,
     getPosts,
     removePost,
     editPost,
   } = usePosts();
 
-  useEffect(() => {
-    getPosts();
-  }, []);
+ 
 
   return (
     <div className="posts-container">
@@ -24,23 +24,27 @@ const Posts = () => {
         <div>
           <input
             type="text"
-            placeholder="create new post"
-            onChange={({ target: { value } }) => handelValue(value)}
-            value={newPost}
+            placeholder="Create new post"
+            onChange={(event) => handelrValue("newPost", event.target.value)}
+            value={text.newPost}
           />
-          <button onClick={createNewPost}>create New Post</button>
+          <button disabled={!text.newPost} onClick={createNewPost}>create New Post</button>
         </div>
         <div>
           <input
             type="text"
-            placeholder="search"
-            onChange={({ target: { value } }) => handelValue(value)}
+            placeholder={text.notificationText}
+            onChange={(event) =>
+              handelrValue("searchPostText", event.target.value)
+            }
+            value={text.searchPostText}
           />
-          <button onClick={createNewPost}>search</button>
+          <button onClick={handlerSearchPost}>search</button>
         </div>
       </div>
+      {posts ?
       <div className="posts-container_wrapper">
-        {posts?.map((post) => {
+        {posts.map((post) => {
           return (
             <CardPost
               key={post.id}
@@ -50,9 +54,9 @@ const Posts = () => {
               deletItem={() => removePost(post.id)}
               editItem={() => editPost(post.id)}
             />
-          );
-        })}
-      </div>
+          )
+         })}
+      </div>  : <div>loading</div>}
     </div>
   );
 };

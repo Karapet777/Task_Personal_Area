@@ -5,7 +5,7 @@ const appReducer = (state, action) => {
     case actionTypes.SET_USER:
       return {
         ...state,
-        user: action.payload.user,
+        user: action.payload.credentials,
       };
     default:
       return state;
